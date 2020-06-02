@@ -1,0 +1,13 @@
+.registration-dialog{
+  width: 90rem;
+}
+
+.registration-input-fields-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .registration-input-field {
+    margin-bottom: 1rem;
+  }
+}

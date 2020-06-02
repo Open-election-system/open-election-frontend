@@ -1,0 +1,12 @@
+.login-dialog{
+  width: 90rem;
+}
+
+.login-input-fields-container {
+  display: flex;
+  flex-direction: column;
+
+  .login-input-field {
+    margin-bottom: 1rem;
+  }
+}
