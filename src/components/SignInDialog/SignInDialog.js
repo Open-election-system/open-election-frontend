@@ -1,4 +1,4 @@
-import './LoginDialogStyle.scss';
+import './SignInDialogStyle.scss';
 
 import React, {Component} from 'react';
 import DialogActions from "@material-ui/core/DialogActions";
@@ -12,28 +12,56 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
 import IconButton from "@material-ui/core/IconButton";
+import {apiAddress} from "../../constants/ApiConstants";
+import {withRouter} from "react-router-dom";
+import {ELECTIONS} from "../../constants/Routes";
 
-class LoginDialog extends Component {
+const signInFields = {
+  email: 'email',
+  password: 'password'
+};
+
+class SignInDialog extends Component {
   state = {
-    data: {
-      email: '',
-      password: ''
+    userData: {
+      [signInFields.email]: null,
+      [signInFields.password]: null
     },
 
     showPassword: false
   };
 
-  handleLogin(handleLogin, handleClose) {
-    handleLogin(this.state.data);
-    handleClose();
+  redirectToElections = async () => this.props.history.push(ELECTIONS);
+
+  handleSignIn = async () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(this.state.userData)
+    };
+
+    fetch(`${apiAddress}/auth/login`, requestOptions)
+      .then(async response => {
+        const data = await response.json();
+
+        this.redirectToElections();
+
+        if (!response.ok) {
+          const error = (data && data.message) || response.status;
+          return Promise.reject(error);
+        }
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
   };
 
-  handleChange = (prop) => (event) => this.setState({data: {...this.state.data, [prop]: event.target.value}});
+  handleChange = (prop) => (event) => this.setState({userData: {...this.state.userData, [prop]: event.target.value}});
 
   toggleShowPassword = () => this.setState({showPassword: !this.state.showPassword});
 
   render() {
-    const {handleClose, handleAddVacancy: handleLogin} = this.props;
+    const {handleClose} = this.props;
     return (
       <Dialog
         className='login-dialog'
@@ -50,19 +78,19 @@ class LoginDialog extends Component {
         <DialogContent dividers>
           <div className='login-input-fields-container'>
             <FormControl fullWidth className='login-input-field' variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
+              <InputLabel htmlFor={`outlined-adornment-${signInFields.email}`}>Email</InputLabel>
               <OutlinedInput
-                id="outlined-adornment-email"
-                onChange={this.handleChange('email')}
+                id={`outlined-adornment-${signInFields.email}`}
+                onChange={this.handleChange(signInFields.email)}
                 labelWidth={60}/>
             </FormControl>
 
             <FormControl className='login-input-field' variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Пароль</InputLabel>
+              <InputLabel htmlFor={`outlined-adornment-${signInFields.password}`}>Пароль</InputLabel>
               <OutlinedInput
-                id="outlined-adornment-password"
+                id={`outlined-adornment-${signInFields.password}`}
                 type={this.state.showPassword ? 'text' : 'password'}
-                onChange={this.handleChange('password')}
+                onChange={this.handleChange(signInFields.password)}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -81,7 +109,7 @@ class LoginDialog extends Component {
         <DialogActions>
           <Button
             autoFocus
-            onClick={() => this.handleLogin(handleLogin, handleClose)} color="primary">
+            onClick={() => this.handleSignIn()} color="primary">
             Увійти
           </Button>
         </DialogActions>
@@ -89,4 +117,4 @@ class LoginDialog extends Component {
   }
 }
 
-export default LoginDialog;
+export default withRouter(SignInDialog);

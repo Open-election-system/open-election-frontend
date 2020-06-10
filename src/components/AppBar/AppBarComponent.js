@@ -8,33 +8,33 @@ import {
   Button
 } from "@material-ui/core";
 
-class AppBarComponent extends Component {
+export default class AppBarComponent extends Component {
   render() {
-    const {handleRegistrationDialogOpen, handleLoginDialogOpen} = this.props;
+    const {handleSignUpDialogOpen, handleLoginDialogOpen} = this.props;
     return (
       <AppBar position="static">
-        <Toolbar className='toolbar'>
-          <Typography
-            variant="h6"
-            className='title'>
-            Голосування
-          </Typography>
+        <div className='toolbar-container'>
+          <Toolbar className='toolbar'>
+            <Typography
+              variant="h6"
+              className='title'>
+              Голосування
+            </Typography>
 
-          <Button
-            onClick={() => handleRegistrationDialogOpen()}
-            color="inherit">
-            Реєстрація
-          </Button>
+            <Button
+              onClick={() => handleSignUpDialogOpen()}
+              color="inherit">
+              Реєстрація
+            </Button>
 
-          <Button
-            onClick={() => handleLoginDialogOpen()}
-            color="inherit">
-            Увійти
-          </Button>
-        </Toolbar>
+            <Button
+              onClick={() => handleLoginDialogOpen()}
+              color="inherit">
+              Увійти
+            </Button>
+          </Toolbar>
+        </div>
       </AppBar>
     );
   }
 }
-
-export default AppBarComponent;

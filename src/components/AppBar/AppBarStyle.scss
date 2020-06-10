@@ -1,8 +1,15 @@
-.toolbar{
-  background-color: gray;
+.toolbar-container {
+  width: 100%;
+  display: flex !important;
+  justify-content: center !important;
+  background-color: gray !important;
 
-  .title {
-    flex-grow: 1;
+  .toolbar {
+    width: 75rem;
+
+    .title {
+      flex-grow: 1;
+    }
   }
 }
 

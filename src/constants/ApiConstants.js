@@ -1,0 +1,1 @@
+export const apiAddress = 'https://lyrical-amulet-276713.ew.r.appspot.com/api/1';
