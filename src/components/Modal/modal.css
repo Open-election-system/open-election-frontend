@@ -1,0 +1,57 @@
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  padding-top: 15px;
+}
+
+.modal-body {
+  padding: 20px;
+  width: 700px;
+  border-radius: 5px;
+  background-color: #dfe1eb;
+  height: 850px;
+}
+
+.modal-exit-btn {
+  color: #c62828;
+  background-color: #dfe1eb;
+  border-style: none;
+  margin-left: 660px;
+  margin-top: 20px;
+}
+
+.election-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.input-title {
+  color: black;
+  text-align: center;
+}
+
+.add-electionInput-btn {
+  margin-top: 10px;
+  height: 30px;
+  width: 180px;
+  background: #494e67;
+  border-radius: 5px;
+  border-style: none;
+  width: 180px;
+  color: white;
+}
+
+.modal_input{
+  width: 600px;
+  padding-left: 10px;
+  margin-bottom: 15px;
+  height: 25px;
+  border-radius: 7px;
+}
