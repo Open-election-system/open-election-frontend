@@ -12,7 +12,7 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import {Visibility, VisibilityOff} from "@material-ui/icons";
-import {addUser} from "../../util/http/users";
+import UserRepository from "../../repository/UserRepository";
 
 const signUpFields = {
   email: 'email',
@@ -41,7 +41,7 @@ class SignUpDialog extends Component {
   handleAddUser() {
     const {handleClose} = this.props;
 
-    addUser(this.state.userData);
+    UserRepository.addUser(this.state.userData);
     handleClose();
   };
 

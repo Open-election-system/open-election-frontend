@@ -6,6 +6,7 @@ import {apiAddress} from "../../../constants/ApiConstants";
 import AppBarContainer from "../../../containers/AppBar/AppBarContainer";
 import Typography from "@material-ui/core/Typography";
 import Footer from "../../Footer/Footer";
+import ElectionsSkeleton from "../../ElectionsSkeleton/ElectionsSkeleton";
 
 class ElectionsPage extends Component {
   state = {
@@ -17,7 +18,16 @@ class ElectionsPage extends Component {
   }
 
   getAllElections = () => {
-    fetch(`${apiAddress}/elections`)
+    const headers = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'user-id': '1'
+      }
+    };
+
+    fetch(`${apiAddress}/elections/all`, headers)
       .then((data) => data.json())
       .then((res) => {
         return this.setState({elections: res});
@@ -29,7 +39,7 @@ class ElectionsPage extends Component {
 
     return (
       <div className='elections'>
-        <AppBarContainer/>
+        <AppBarContainer  logged/>
 
         <div className='elections-content-container'>
           <div className='title-container'>
@@ -38,7 +48,7 @@ class ElectionsPage extends Component {
             </Typography>
           </div>
 
-          {elections ? <Elections elections={elections}/> : <div>Немає даних</div>}
+          {elections ? <Elections elections={elections}/> : <ElectionsSkeleton/>}
         </div>
 
         <Footer/>

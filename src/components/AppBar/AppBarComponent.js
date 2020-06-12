@@ -7,10 +7,28 @@ import {
   Typography,
   Button
 } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
 
 export default class AppBarComponent extends Component {
-  render() {
+  renderActionButton () {
     const {handleSignUpDialogOpen, handleLoginDialogOpen} = this.props;
+    return (
+      <div>
+        <Button
+          onClick={() => handleSignUpDialogOpen()}
+          color="inherit">
+          Реєстрація
+        </Button>
+
+        <Button
+          onClick={() => handleLoginDialogOpen()}
+          color="inherit">
+          Увійти
+        </Button>
+      </div>)
+  }
+
+  render() {
     return (
       <AppBar position="static">
         <div className='toolbar-container'>
@@ -21,17 +39,7 @@ export default class AppBarComponent extends Component {
               Голосування
             </Typography>
 
-            <Button
-              onClick={() => handleSignUpDialogOpen()}
-              color="inherit">
-              Реєстрація
-            </Button>
-
-            <Button
-              onClick={() => handleLoginDialogOpen()}
-              color="inherit">
-              Увійти
-            </Button>
+            {!this.props.logged ? this.renderActionButton() : <Avatar>VK</Avatar>}
           </Toolbar>
         </div>
       </AppBar>

@@ -1,0 +1,19 @@
+.vote-dialog-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30rem;
+
+  .dialog-title-content-container{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .checkboxes {
+    margin-top: 2rem;
+  }
+
+  .restriction-title{
+    align-self: flex-start;
+  }
+}

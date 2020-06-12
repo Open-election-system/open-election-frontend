@@ -3,7 +3,7 @@ import AppBarComponent from '../../components/AppBar/AppBarComponent';
 import SignUpDialog from '../../components/SignUpDialog/SignUpDialog';
 import SignInDialog from '../../components/SignInDialog/SignInDialog';
 
-class HomePage extends Component {
+class AppBarContainer extends Component {
   state = {
     showSignUpDialog: false,
     showLoginDialog: false
@@ -35,16 +35,17 @@ class HomePage extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className='my-style'>
         <AppBarComponent
+          logged={this.props.logged}
           handleSignUpDialogOpen={this.handleSignUpDialogOpen}
           handleLoginDialogOpen={this.handleLoginDialogOpen}/>
 
         {this.renderSignUpDialog()}
         {this.renderLoginDialog()}
-      </React.Fragment>
+      </div>
     );
   }
 }
 
-export default HomePage;
+export default AppBarContainer;
