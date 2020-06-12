@@ -48,7 +48,7 @@ class ElectionsPage extends Component {
             </Typography>
           </div>
 
-          {elections ? <Elections elections={elections}/> : <ElectionsSkeleton/>}
+          {elections && Array.isArray(elections) ? <Elections elections={elections}/> : <ElectionsSkeleton/>}
         </div>
 
         <Footer/>
